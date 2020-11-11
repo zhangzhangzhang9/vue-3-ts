@@ -1,7 +1,9 @@
 <template>
   <ul>
-    <li v-for="column of list" :key="column.id">
-      <img :src="column.avatar" :alt="column.title">
+    <li v-for="column of list"
+        :key="column.id">
+      <img :src="column.avatar"
+           :alt="column.title">
       <p>{{column.description}}</p>
       <a href="#">进入专栏</a>
     </li>
@@ -9,18 +11,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType } from 'vue'
 import { ColumnProps } from './comProps'
 export default defineComponent({
-  name: "CulumnList",
-  props:{
-    list:{
+  name: 'CulumnList',
+  props: {
+    list: {
       type: Array as PropType<ColumnProps[]>,
-      required:true
+      required: true
     }
-  },
+  }
   // setup(props){
 
   // }
-});
+})
 </script>
