@@ -1,30 +1,55 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="container">
+    <ColumnList :list="list"></ColumnList>
   </div>
-  <router-view/>
+  <router-view />
 </template>
-
+<script lang="ts">
+import { defineComponent } from 'vue'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { ColumnProps } from '@/components/comProps'
+import ColumnList from '@/components/ColumnList.vue'
+const testData: ColumnProps[] = [
+  {
+    id: 1,
+    avatar:
+      'http://vue-maker.oss-cn-hangzhou.aliyuncs.com/vue-marker/5f3e41b8b7d9c60b68cdd1ef.jpg',
+    description: '分享100%原创干货，致力于帮助EHS人成长.',
+    title: 'EHS之路'
+  },
+  {
+    id: 1,
+    avatar:
+      'http://vue-maker.oss-cn-hangzhou.aliyuncs.com/vue-marker/5f3e41b8b7d9c60b68cdd1ef.jpg',
+    description: '分享100%原创干货，致力于帮助EHS人成长.',
+    title: 'EHS之路'
+  },
+  {
+    id: 1,
+    avatar:
+      'http://vue-maker.oss-cn-hangzhou.aliyuncs.com/vue-marker/5f3e41b8b7d9c60b68cdd1ef.jpg',
+    description: '分享100%原创干货，致力于帮助EHS人成长.',
+    title: 'EHS之路'
+  },
+  {
+    id: 1,
+    avatar:
+      'http://vue-maker.oss-cn-hangzhou.aliyuncs.com/vue-marker/5f3e41b8b7d9c60b68cdd1ef.jpg',
+    description: '分享100%原创干货，致力于帮助EHS人成长.',
+    title: 'EHS之路'
+  }
+]
+export default defineComponent({
+  name: 'App',
+  components: {
+    ColumnList
+  },
+  setup () {
+    return {
+      list: testData
+    }
+  }
+})
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
