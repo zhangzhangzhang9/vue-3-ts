@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import { ColumnProps } from './comProps'
 export default defineComponent({
   name: 'CulumnList',
@@ -29,9 +29,17 @@ export default defineComponent({
       type: Array as PropType<ColumnProps[]>,
       required: true
     }
+  },
+  setup(props) {
+    const columnList = computed(() => {
+      return props.list.map((column) => {
+        if (!column.avatar) {
+          column.avatar = require('@/assets/default.jpg')
+        }
+        return column
+      })
+    })
+    return { columnList }
   }
-  // setup(props){
-
-  // }
 })
 </script>
