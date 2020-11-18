@@ -35,6 +35,7 @@ export default defineComponent({
       return props.list.map((column) => {
         if (!column.avatar) {
           column.avatar = require('@/assets/default.jpg')
+          console.log(column.avatar)
         }
         return column
       })
