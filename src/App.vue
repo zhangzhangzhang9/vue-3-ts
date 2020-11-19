@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <GlobalHeader :user="user" />
-    <ColumnList :list="list"></ColumnList>
+    <Footer/>
+    <!-- <ColumnList :list="list"></ColumnList>
     <ValidateForm @form-submit="onFormSubmit">
       <div class="mb3">
         <label for="exampleInputEmail1">邮箱地址</label>
@@ -20,7 +21,7 @@
       <template #submit>
         <span class="btn btn-danger">测试</span>
       </template>
-    </ValidateForm>
+    </ValidateForm> -->
   </div>
   <router-view />
 </template>
@@ -28,10 +29,11 @@
 import { defineComponent, reactive, ref } from 'vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ColumnProps, UserProps } from '@/components/comProps';
-import ColumnList from '@/components/ColumnList.vue';
+// import ColumnList from '@/components/ColumnList.vue';
 import GlobalHeader from '@/components/GlobalHeader.vue';
-import ValidateInput, { RulesProp } from '@/components/ValidateInput.vue';
-import ValidateForm from '@/components/ValidateForm.vue';
+// import ValidateInput, { RulesProp } from '@/components/ValidateInput.vue';
+// import ValidateForm from '@/components/ValidateForm.vue';
+import Footer from '@/views/Footer.vue';
 const currentuser: UserProps = {
   isLogin: true,
   name: '张张'
@@ -68,18 +70,19 @@ const testData: ColumnProps[] = [
 export default defineComponent({
   name: 'App',
   components: {
-    ColumnList,
+    // ColumnList,
     GlobalHeader,
-    ValidateInput,
-    ValidateForm
+    // ValidateInput,
+    // ValidateForm,
+    Footer
   },
   setup() {
     const emailVal = ref('123');
     const inputRef = ref<any>(null);
-    const emailRules: RulesProp = [
-      { type: 'required', message: '电子邮件地址不能为空' },
-      { type: 'email', message: '请输入正确的邮箱地址' }
-    ];
+    // const emailRules: RulesProp = [
+    //   { type: 'required', message: '电子邮件地址不能为空' },
+    //   { type: 'email', message: '请输入正确的邮箱地址' }
+    // ];
     const emailRef = reactive({
       val: '123@163.com',
       error: false,
@@ -99,7 +102,7 @@ export default defineComponent({
       user: currentuser,
       emailRef,
       validateEmail,
-      emailRules,
+      // emailRules,
       emailVal,
       onFormSubmit,
       inputRef
