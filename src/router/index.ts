@@ -1,7 +1,7 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-const column = () => import('@/views/column.vue')
-const Login = () => import('@/views/Login.vue')
-const Home = () => import('@/views/Home.vue')
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+const column = () => import('@/views/column.vue');
+const Login = () => import('@/views/Login.vue');
+const Home = () => import('@/views/Home.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -19,11 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Login',
     component: Login
   }
-]
+];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes
-})
+});
 
-export default router
+export default router;

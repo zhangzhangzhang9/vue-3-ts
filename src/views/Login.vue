@@ -23,15 +23,11 @@
 
 </template>
 <script lang="ts">
-import { defineComponent, ref, reactive } from 'vue'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { UserProps } from '@/components/comProps'
-import ValidateInput, { RulesProp } from '@/components/ValidateInput.vue'
-import ValidateForm from '@/components/ValidateForm.vue'
-const currentuser: UserProps = {
-  isLogin: false,
-  name: '张张'
-}
+import { defineComponent, ref, reactive } from 'vue';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ValidateInput, { RulesProp } from '@/components/ValidateInput.vue';
+import ValidateForm from '@/components/ValidateForm.vue';
+import { useRouter } from 'vue-router';
 export default defineComponent({
   name: 'App',
   components: {
@@ -39,33 +35,34 @@ export default defineComponent({
     ValidateForm
   },
   setup() {
-    const passwordVal = ref('')
+    const router = useRouter();
+    const passwordVal = ref('');
     // const inputRef = ref<any>(null)
 
     const emailRef = reactive({
       val: '123@163.com',
       error: false,
       message: ''
-    })
+    });
     const validateEmail = () => {
       if (emailRef.val.trim() === '') {
-        emailRef.error = true
-        emailRef.message = '不得为空'
+        emailRef.error = true;
+        emailRef.message = '不得为空';
       }
-    }
+    };
     const onFormSubmit = (valid: boolean) => {
-      console.log(2, valid)
+      console.log(2, valid);
       if (valid) {
-        // router.push({ path: '/column', params: { id: 1 } });
+        router.push({ path: '/column', query: { id: 1 } });
       }
-    }
+    };
     const emailRules: RulesProp = [
       { type: 'required', message: '电子邮件地址不能为空' },
       { type: 'email', message: '请输入正确的邮箱地址' }
-    ]
+    ];
     const passwordValRules: RulesProp = [
       { type: 'required', message: '密码不能为空' }
-    ]
+    ];
     return {
       emailRef,
       validateEmail,
@@ -74,9 +71,9 @@ export default defineComponent({
       onFormSubmit,
       // inputRef,
       passwordValRules
-    }
+    };
   }
-})
+});
 </script>
 <style>
 </style>
