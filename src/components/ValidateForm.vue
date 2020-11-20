@@ -20,7 +20,7 @@ export default defineComponent({
   name: 'ValidateForm',
   emits: ['form-submit'],
   setup(props, context) {
-    const funcArr: ValidateFunc[] = [];
+    let funcArr: ValidateFunc[] = [];
     const submitForm = () => {
       const result = funcArr.map((func) => func()).every((result) => result);
       context.emit('form-submit', result);
@@ -33,6 +33,7 @@ export default defineComponent({
     emitter.on<ValidateFunc>('form-item-created', callback);
     onUnmounted(() => {
       emitter.off<ValidateFunc>('form-item-created', callback);
+      funcArr = [];
     });
 
     return { submitForm };
