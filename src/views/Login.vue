@@ -28,6 +28,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ValidateInput, { RulesProp } from '@/components/ValidateInput.vue';
 import ValidateForm from '@/components/ValidateForm.vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import { GlobalDataProps } from '@/store/index.ts';
 export default defineComponent({
   name: 'App',
   components: {
@@ -36,6 +38,7 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter();
+    const store = useStore<GlobalDataProps>();
     const passwordVal = ref('');
     // const inputRef = ref<any>(null)
 
@@ -51,9 +54,9 @@ export default defineComponent({
       }
     };
     const onFormSubmit = (valid: boolean) => {
-      console.log(2, valid);
       if (valid) {
-        router.push({ path: '/column', query: { id: 1 } });
+        store.commit('login');
+        router.push({ path: '/' });
       }
     };
     const emailRules: RulesProp = [

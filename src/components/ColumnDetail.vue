@@ -66,9 +66,10 @@ export default defineComponent({
     const route = useRoute();
     console.log(route);
     const currentId = Number(route.query.id);
-    const column = testData.find((v) => v.id === currentId);
-    console.log(column);
-    const list = testData.filter((v) => v.columnId === currentId);
+    const column: PostProps | undefined = testData.find(
+      (v) => v.id === currentId
+    );
+    const list: PostProps[] = testData.filter((v) => v.columnId === currentId);
     return { column, list };
   }
 });
