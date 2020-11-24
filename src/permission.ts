@@ -1,11 +1,10 @@
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
-const store = useStore();
-const router = useRouter();
+import store from './store/index';
+import router from './router/index';
+
 router.beforeEach((to, from, next) => {
-  console.log(to.meta);
+  console.log(5, to.meta);
   if (to.meta.requiredLogin && !store.state.user.isLogin) {
-    next({ name: 'login' });
+    next({ name: 'Login' });
   } else if (to.meta.redirectAlreadyLogin && store.state.user.isLogin) {
     next('/');
   } else {

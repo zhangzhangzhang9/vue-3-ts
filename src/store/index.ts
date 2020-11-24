@@ -32,6 +32,11 @@ const store = createStore<GlobalDataProps>({
     },
     createPost(state, newPost) {
       state.columns.push(newPost);
+    },
+    logout(state) {
+      state.user = {
+        isLogin: false
+      };
     }
   },
   getters: {

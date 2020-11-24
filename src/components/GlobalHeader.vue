@@ -41,6 +41,8 @@ import { UserProps } from './comProps';
 import Dropdown from './Dropdown.vue';
 import DropdownItem from './DropdownItem.vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import { GlobalDataProps } from '@/store/index.ts';
 export default defineComponent({
   name: 'GlobalHeader',
   components: {
@@ -55,6 +57,7 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter();
+    const store = useStore<GlobalDataProps>();
     const create = () => {
       router.push({ path: '/create' });
     };
@@ -62,6 +65,7 @@ export default defineComponent({
       router.push({ path: '/login' });
     };
     const logout = () => {
+      store.commit('logout');
       router.push({ path: '/' });
     };
     return { create, goLogin, logout };
