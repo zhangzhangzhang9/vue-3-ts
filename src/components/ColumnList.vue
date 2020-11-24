@@ -11,7 +11,7 @@
                class="rounded-circle border border-light w-25 my-3">
           <h5 class="card-title">{{column.title}}</h5>
           <p class="card-text text-left">{{column.description}}</p>
-          <router-link :to="{name:'column',params:{id:column.id}}"
+          <router-link :to="{name:'column',query:{id:column.id}}"
                        class="btn btn-outline-primary">进入专栏</router-link>
         </div>
       </div>
@@ -20,8 +20,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
-import { ColumnProps } from './comProps'
+import { computed, defineComponent, PropType } from 'vue';
+import { ColumnProps } from './comProps';
 export default defineComponent({
   name: 'CulumnList',
   props: {
@@ -34,12 +34,12 @@ export default defineComponent({
     const columnList = computed(() => {
       return props.list.map((column) => {
         if (!column.avatar) {
-          column.avatar = require('@/assets/default.jpg')
+          column.avatar = require('@/assets/default.jpg');
         }
-        return column
-      })
-    })
-    return { columnList }
+        return column;
+      });
+    });
+    return { columnList };
   }
-})
+});
 </script>

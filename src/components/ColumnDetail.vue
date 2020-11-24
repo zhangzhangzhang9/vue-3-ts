@@ -16,47 +16,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { useRoute } from 'vue-router';
 import PostList from '@/components/PostList.vue';
-// import { PostProps } from '@/components/comProps';
-export interface PostProps {
-  id: number;
-  title: string;
-  content: string;
-  image?: string;
-  createAt: string;
-  columnId: number | string;
-}
-const testData: PostProps[] = [
-  {
-    id: 1,
-    columnId: 1,
-    content: '分享100%原创干货，致力于帮助EHS人成长.',
-    image:
-      'http://vue-maker.oss-cn-hangzhou.aliyuncs.com/vue-marker/5f3e41b8b7d9c60b68cdd1ef.jpg',
-    title: 'EHS之路',
-    createAt: '2020-11-20'
-  },
-  {
-    id: 2,
-    columnId: 2,
-    content: '分享100%原创干货，致力于帮助EHS人成长.',
-    image:
-      'http://vue-maker.oss-cn-hangzhou.aliyuncs.com/vue-marker/5f3e41b8b7d9c60b68cdd1ef.jpg',
-    title: 'EHS之路',
-    createAt: '2020-11-20'
-  },
-  {
-    id: 3,
-    columnId: 3,
-    content: '分享100%原创干货，致力于帮助EHS人成长.',
-    image:
-      'http://vue-maker.oss-cn-hangzhou.aliyuncs.com/vue-marker/5f3e41b8b7d9c60b68cdd1ef.jpg',
-    title: 'EHS之路',
-    createAt: '2020-11-20'
-  }
-];
+import { useStore } from 'vuex';
+import { GlobalDataProps } from '@/store/index.ts';
 export default defineComponent({
   name: 'ColumnDetail',
   components: {
@@ -64,12 +28,11 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute();
+    const store = useStore<GlobalDataProps>();
     console.log(route);
     const currentId = Number(route.query.id);
-    const column: PostProps | undefined = testData.find(
-      (v) => v.id === currentId
-    );
-    const list: PostProps[] = testData.filter((v) => v.columnId === currentId);
+    const column = computed(() => store.getters.getColumnById(currentId));
+    const list = computed(() => store.getters.getPostsByCid(currentId));
     return { column, list };
   }
 });

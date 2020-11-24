@@ -5,7 +5,7 @@
     <ul v-if="!user.isLogin"
         class="list-inline mb-0">
       <li class="list-inline-item">
-        <a href=""
+        <a @click="goLogin"
            class="btn btn-outline-light my-2">登录</a>
       </li>
       <li class="list-inline-item">
@@ -17,8 +17,8 @@
         class="list-inline mb-0">
       <li class="list-inline-item">
         <Dropdown :title="`你好 ${user.name}`">
-          <DropdownItem disabled>
-            <a href="#"
+          <DropdownItem>
+            <a @click="create"
                class="dropdown-item">新建文章</a>
           </DropdownItem>
           <DropdownItem>
@@ -40,6 +40,7 @@ import { defineComponent, PropType } from 'vue';
 import { UserProps } from './comProps';
 import Dropdown from './Dropdown.vue';
 import DropdownItem from './DropdownItem.vue';
+import { useRouter } from 'vue-router';
 export default defineComponent({
   name: 'GlobalHeader',
   components: {
@@ -51,6 +52,16 @@ export default defineComponent({
       type: Object as PropType<UserProps>,
       required: true
     }
+  },
+  setup() {
+    const router = useRouter();
+    const create = () => {
+      router.push({ path: '/create' });
+    };
+    const goLogin = () => {
+      router.push({ path: '/login' });
+    };
+    return { create, goLogin };
   }
 });
 </script>
