@@ -26,7 +26,7 @@
                class="dropdown-item">编辑资料</a>
           </DropdownItem>
           <DropdownItem>
-            <a href="#"
+            <a @click="logout"
                class="dropdown-item">退出登录</a>
           </DropdownItem>
         </Dropdown>
@@ -61,7 +61,10 @@ export default defineComponent({
     const goLogin = () => {
       router.push({ path: '/login' });
     };
-    return { create, goLogin };
+    const logout = () => {
+      router.push({ path: '/' });
+    };
+    return { create, goLogin, logout };
   }
 });
 </script>
